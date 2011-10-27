@@ -1,0 +1,16 @@
+#%Module1.0
+#
+# fastqscreen 
+#
+set version [file tail [module-info name]]
+set name [file dirname [module-info name]]
+
+set modroot /bubo/home/h5/roman/opt/fastqscreen/$version
+
+if [module-info mode display] {
+	puts stderr "\t$name-$version\n"
+}
+
+prepend-path    PATH            $modroot
+
+module-whatis   "fastqscreen"

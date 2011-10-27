@@ -1,0 +1,18 @@
+#%Module1.0
+#
+# cmake
+#
+set version [file tail [module-info name]]
+set name [file dirname [module-info name]]
+
+set home /bubo/home/h5/roman/opt/lib/bin
+
+if [module-info mode display] {
+	puts stderr "\t$name-$version\n"
+}
+
+prepend-path	PATH		$home/bin
+prepend-path	MANPATH		$home/man
+
+module-whatis   "another make"
+

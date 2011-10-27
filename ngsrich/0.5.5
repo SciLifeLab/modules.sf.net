@@ -1,0 +1,37 @@
+#%Module1.0#####################################################################
+##
+## NGSRich 
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+# for Tcl script use only
+
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+
+set	modroot		/bubo/home/h5/roman/opt/ngsrich/$version
+
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tpicard - use picard $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"Loads NGSRich"
+
+#Log loading to syslog
+logToSyslog 
+
+# Directories for the program:
+#
+
+setenv		NGSRICH_HOME $modroot
+
+prepend-path	PATH		$modroot
+prepend-path    CLASSPATH   $modroot/bin

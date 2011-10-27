@@ -1,0 +1,25 @@
+#%Module1.0
+#
+# Exports DRMAA environment variables to use both SLURM and SGE batch queue systems
+# 
+# http://wikis.sun.com/display/GridEngine/Automating+Grid+Engine+Functions+Through+DRMAA
+# http://apps.man.poznan.pl/trac/slurm-drmaa
+#
+set version [file tail [module-info name]]
+set name [file dirname [module-info name]]
+
+set slurm  /bubo/sw/apps/build/slurm-drmaa/lib/libdrmaa.so
+
+#TODO:  Transparently load the DRMAA modules for the given Batch manager.
+#       Finding the libraries via pkg-config might be an option to autodiscover which batch system
+#       is being used in the system
+#set sge    /
+
+set DRMAA_LIBRARY_PATH=$slurm
+set DRMAA_PATH=$DRMAA_LIBRARY_PATH
+
+if [module-info mode display] {
+	puts stderr "\t$name-$version\n"
+}
+
+module-whatis   "SGE/SLURM DRMAA connector"
