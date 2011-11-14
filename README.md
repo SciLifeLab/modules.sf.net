@@ -1,4 +1,4 @@
-This is just a placeholder for software "packaged" using the ancient module system:
+This is just a placeholder for software "packaged" using the **ancient** and horribly **deprecated** module system:
 
 http://modules.sf.net
 
