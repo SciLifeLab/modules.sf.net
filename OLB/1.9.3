@@ -1,0 +1,15 @@
+#%Module1.0
+#
+#
+set version [file tail [module-info name]]
+set name [file dirname [module-info name]]
+
+set modroot /proj/a2010002/nobackup/sw/mf/bioinfo-tools/OLB/OLB-$version/bin
+
+if [module-info mode display] {
+	puts stderr "\t$name-$version\n"
+}
+
+prepend-path    PATH            $modroot
+
+module-whatis   "Illumina's Offline Base Caller"
