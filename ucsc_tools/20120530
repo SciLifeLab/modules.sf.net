@@ -1,0 +1,35 @@
+#%Module1.0#####################################################################
+##
+## UCSC tools modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/misc/ucsc_tools/20120530/bin
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tls \$UCSC_TOOLS_HOME - show available tools $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads UCSC tools environment."
+
+# Only one version at a time
+conflict ucsc_tools
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+prepend-path    PATH            $modroot
+
+# Environments for the program:
+#
+setenv               UCSC_TOOLS_HOME      $modroot
