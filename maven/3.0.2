@@ -1,0 +1,25 @@
+#%Module1.0
+
+set version [file tail [module-info name]]
+set name ant
+
+set home /proj/a2010002/nobackup/sw/mf/bioinfo-tools/misc/maven/3.0.2
+
+if [module-info mode display] {
+	puts stderr "\tApache Maven, an Apache build manager for Java projects\n"
+}
+
+# prereqs
+# Apparently in UPPMAX java is installed in the base system!
+#if {! [ is-loaded jsdk ] } {
+#        module load jsdk
+#}
+
+if {[file exist $home/bin ]} {
+    append-path PATH $home/bin
+    setenv M2_HOME $home
+} else {
+    puts stderr "\n\tThere is no version of $name $version available.\n"
+}
+
+module-whatis   "Apache build manager for Java projects"
