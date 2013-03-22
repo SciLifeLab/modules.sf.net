@@ -3,13 +3,14 @@
 set version [file tail [module-info name]]
 set name ant
 
-set home /your/built/apache-ant-$version
+set home /pdc/vol/$name/$version
+set home /proj/a2010002/nobackup/sw/mf/bioinfo-tools/misc/ant/1.8.1
 
 if [module-info mode display] {
-	puts stderr "\tApache Ant, a Java-based build environment\n"
+    puts stderr "\tApache Ant, a Java-based build environment\n"
 }
 
-# prereqs YMMV
+# prereqs
 if {! [ is-loaded jsdk ] } {
         module load jsdk
 }
