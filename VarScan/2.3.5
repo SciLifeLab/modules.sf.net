@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## VarScan modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/VarScan-2.3.5
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tVarScan - use VarScan $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads VarScan environment."
+
+# Only one version at a time
+conflict VarScan
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+prepend-path    PATH            $modroot
+prepend-path    CLASSPATH       $modroot
+
+# Environments for the program:
+#
+setenv               VARSCAN_HOME      $modroot
