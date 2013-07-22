@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## clojure modulefile
+## lein modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -9,19 +9,19 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/compilers/clojure-1.5.1
+set     modroot          /proj/a2010002/nobackup/sw/mf/compilers/lein-2.2.0
 
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\tclojure - use clojure $version"
+        puts stderr "\tlein - use lein $version"
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads clojure environment."
+module-whatis   "Loads lein environment."
 
 # Only one version at a time
-conflict clojure
+conflict lein
 
 #Log loading to syslog
 logToSyslog
@@ -33,4 +33,4 @@ prepend-path    CLASSPATH       $modroot
 
 # Environments for the program:
 #
-setenv               CLOJURE_HOME      $modroot
+setenv               LEIN_HOME      $modroot
