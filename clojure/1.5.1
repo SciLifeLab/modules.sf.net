@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## clojure modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/clojure-1.5.1
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tclojure - use clojure $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads clojure environment."
+
+# Only one version at a time
+conflict clojure
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+prepend-path    PATH            $modroot
+prepend-path    CLASSPATH       $modroot
+
+# Environments for the program:
+#
+setenv               CLOJURE_HOME      $modroot
