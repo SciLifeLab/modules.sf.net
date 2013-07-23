@@ -1,0 +1,39 @@
+#%Module1.0#####################################################################
+##
+## GATK modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot         /bubo/sw/apps/bioinfo/GATK/$version
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tGATK - use GATK $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads GATK environment."
+
+# Only one version at a time
+conflict GATK
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+
+prepend-path    PATH            $modroot
+
+# Environments for the program:
+#
+
+setenv               GATK_HOME      $modroot
+
+puts stderr "You can find all the GATK files in $modroot"
