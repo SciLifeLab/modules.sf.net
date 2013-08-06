@@ -9,7 +9,7 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/pipelines/bowtie2/2.0.0-beta5
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/pipelines/bowtie2/2.1.0
 
 proc ModulesHelp { } {
         global version modroot
