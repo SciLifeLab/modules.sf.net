@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## bowtie2 modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/bamtools
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tbamtools - use bamtools $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads bamtools environment."
+
+# Only one version at a time
+conflict bamtools
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+prepend-path    PATH            $modroot/bin
+prepend-path    LD_LIBRARY_PATH $modroot/lib
+
+# Environments for the program:
+#
+setenv               BAMTOOLS_HOME      $modroot
