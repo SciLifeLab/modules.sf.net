@@ -8,7 +8,7 @@ will be offered.
 *** Use it at your own risk ***
 
 You might want to adjust your MODULEPATH environment variable to load those custom/experimental
-modules.
+modules, e.g.:
 
 export MODULEPATH=$MODULEPATH:/bubo/home/h5/roman/opt/modules
 
