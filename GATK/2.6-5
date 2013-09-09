@@ -9,7 +9,8 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot         /bubo/sw/apps/bioinfo/GATK/$version
+#set     modroot         /bubo/sw/apps/bioinfo/GATK/$version
+set     modroot         /proj/a2010002/nobackup/sw/mf/bioinfo-tools/GATK/$version
 
 proc ModulesHelp { } {
         global version modroot
