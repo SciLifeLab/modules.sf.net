@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## bcbio.variation modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/bcbio.variation/$version
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tbcbio.variation - use bcbio.variation $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads bcbio.variation environment."
+
+# Only one version at a time
+conflict bcbio.variation
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+prepend-path    PATH            $modroot
+prepend-path    CLASSPATH       $modroot
+
+# Environments for the program:
+#
+setenv               BCBIO_VARIATION_HOME      $modroot
