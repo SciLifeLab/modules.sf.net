@@ -11,10 +11,9 @@ if [module-info mode display] {
 }
 
 # prereqs
-# this doesn't work and ant works without it
-#if {! [ is-loaded jsdk ] } {
-#        module load jsdk
-#}
+if {! [ is-loaded java/sun_jdk1.7.0_25 ] } {
+        module load java/sun_jdk1.7.0_25
+}
 
 if [module-info mode load] {
     if {[file exist $home/bin ]} {
