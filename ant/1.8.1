@@ -16,19 +16,22 @@ if [module-info mode display] {
 #        module load jsdk
 #}
 
-if {[file exist $home/bin ]} {
-    append-path PATH $home/bin
-    setenv ANT_HOME $home
-} else {
-    puts stderr "\n\tThere is no version of $name $version available.\n"
+if [module-info mode load] {
+    if {[file exist $home/bin ]} {
+        #puts stderr "Prepending $home/bin to PATH"
+        prepend-path        PATH                $home/bin
+        setenv              ANT_HOME            $home
+        puts stderr "ant/$version: Setting size of ant virtual machine 512MB via ANT_OPTS=\"-Xmx512m\""
+        setenv              ANT_OPTS            "-Xmx512m"
+    } else {
+        puts stderr "\n\tThere is no version of $name $version available.\n"
+    }
 }
 
-if [module-info mode load] {
-    puts stderr "ant/$version: Setting size of ant virtual machine 512MB via ANT_OPTS=\"-Xmx512m\""
-    setenv              ANT_OPTS            "-Xmx512m"
-}
 if [module-info mode remove] {
-    puts stderr "ant/$version: Removing ANT_OPTS environment variable."
+    #puts stderr "Removing \'$home/bin\' from PATH"
+    remove-path         PATH                $home/bin
+    #puts stderr "ant/$version: Removing ANT_OPTS environment variable."
     setenv              ANT_OPTS            ""
 }
 
