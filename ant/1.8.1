@@ -11,15 +11,25 @@ if [module-info mode display] {
 }
 
 # prereqs
-if {! [ is-loaded jsdk ] } {
-        module load jsdk
-}
+# this doesn't work and ant works without it
+#if {! [ is-loaded jsdk ] } {
+#        module load jsdk
+#}
 
 if {[file exist $home/bin ]} {
     append-path PATH $home/bin
     setenv ANT_HOME $home
 } else {
     puts stderr "\n\tThere is no version of $name $version available.\n"
+}
+
+if [module-info mode load] {
+    puts stderr "ant/$version: Setting size of ant virtual machine 512MB via ANT_OPTS=\"-Xmx512m\""
+    setenv              ANT_OPTS            "-Xmx512m"
+}
+if [module-info mode remove] {
+    puts stderr "ant/$version: Removing ANT_OPTS environment variable."
+    setenv              ANT_OPTS            ""
 }
 
 module-whatis   "Apache Ant build environment"
