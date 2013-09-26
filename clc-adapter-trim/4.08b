@@ -2,7 +2,7 @@
 #
 # clc-adapter-trim
 
-set home /proj/a2010002/nobackup/sw/mf/bioinfo-tools/clc/clc-adapter-trim
+set home /proj/a2010002/nobackup/sw/mf/bioinfo-tools/clc/clc-adapter-trim/4.08b
 
 
 if [module-info mode display] {
