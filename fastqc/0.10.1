@@ -26,10 +26,11 @@ conflict fastqc
 #Log loading to syslog
 logToSyslog
 
-# Directories for the program:
-#
-prepend-path    PATH            $modroot
-prepend-path    CLASSPATH       $modroot
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+    prepend-path    CLASSPATH       $modroot
+}
 
-# Environments for the program:
-#
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+}
