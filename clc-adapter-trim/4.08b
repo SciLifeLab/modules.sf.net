@@ -1,0 +1,21 @@
+#%Module1.0
+#
+# clc-adapter-trim
+
+set home /proj/a2010002/nobackup/sw/mf/bioinfo-tools/clc/clc-adapter-trim
+
+
+if [module-info mode display] {
+	puts stderr "\tCLC Adapter Trim version 4.0.8beta (proprietary)\n"
+}
+
+if [module-info mode load] {
+    prepend-path	PATH		$home
+}
+
+if [module-info mode remove] {
+    remove-path     PATH        $home
+}
+
+module-whatis   "CLC Adapter Trim"
+
