@@ -3,7 +3,7 @@
 ## trimmomatic modulefile
 ##
 
-source $env(MODULE_INCLUDE)/functions.tcl
+source /sw/mf/common/includes/functions.tcl
 getCluster
 
 set components [ file split [ module-info name ] ]

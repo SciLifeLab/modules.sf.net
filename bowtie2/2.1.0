@@ -4,7 +4,7 @@
 ##
 
 # adjust for use on milou with newer module version
-#source $env(MODULE_INCLUDE)/functions.tcl
+#source /sw/mf/common/includes/functions.tcl
 source /sw/mf/common/includes/functions.tcl
 getCluster
 
