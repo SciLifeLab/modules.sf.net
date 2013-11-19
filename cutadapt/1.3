@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## GATK modulefile
+## cutadapt modulefile
 ##
 
 source /sw/mf/common/includes/functions.tcl
@@ -9,31 +9,27 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot         /bubo/home/h27/pontusla/src/GATK/$version
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/misc/cutadapt/$version/bin
 
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\tGATK - use GATK $version"
+        puts stderr "\tcutadapt - use cutadapt $version"
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads GATK environment."
+module-whatis   "Loads cutadapt environment."
 
 # Only one version at a time
-conflict GATK
+conflict cutadapt
 
 #Log loading to syslog
 logToSyslog
 
 # Directories for the program:
 #
-
 prepend-path    PATH            $modroot
 
 # Environments for the program:
 #
-
-setenv               GATK_HOME      $modroot
-
-puts stderr "You can find all the GATK files in $modroot"
+setenv               CUTADAPT_HOME      $modroot

@@ -3,7 +3,9 @@
 ## bowtie2 modulefile
 ##
 
-source $env(MODULE_INCLUDE)/functions.tcl
+# adjust for use on milou with newer module version
+#source /sw/mf/common/includes/functions.tcl
+source /sw/mf/common/includes/functions.tcl
 getCluster
 
 set components [ file split [ module-info name ] ]
