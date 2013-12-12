@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## fastqc modulefile
+## samtools modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -18,7 +18,7 @@ proc ModulesHelp { } {
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads fastqc environment."
+module-whatis   "Loads samtools environment."
 
 # Only one version at a time
 conflict samtools
