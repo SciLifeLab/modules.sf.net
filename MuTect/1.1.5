@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## mutect modulefile
+## MuTect modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -14,27 +14,23 @@ set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/muTect/$ver
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\tmuTect - use muTect $version"
+        puts stderr "\tMuTect - use MuTect $version"
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads muTect environment."
+module-whatis   "Loads MuTect environment."
 
 # Only one version at a time
-conflict muTect
+conflict MuTect
 
 #Log loading to syslog
 logToSyslog
 
 
 if [module-info mode load] {
-    # Directories for the program:
-    #prepend-path        PATH            $modroot
-    # Environments for the program:
-    setenv              MUTECT_HOME     $modroot
+    setenv          MUTECT_HOME     $modroot
 }
 
 if [module-info mode remove] {
-    #remove-path     PATH            $modroot
-    setenv          MUTECT_HOME      ""
+    setenv          MUTECT_HOME     ""
 }

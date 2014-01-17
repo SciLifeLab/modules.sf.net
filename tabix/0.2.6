@@ -9,7 +9,7 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/tabix/tabix-0.2.6
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/tabix/tabix-$version
 
 proc ModulesHelp { } {
         global version modroot
@@ -26,10 +26,12 @@ conflict tabix
 #Log loading to syslog
 logToSyslog
 
-# Directories for the program:
-#
-prepend-path    PATH            $modroot
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+    setenv          TABIX_HOME      $modroot
+}
 
-# Environments for the program:
-#
-setenv               TABIX_HOME      $modroot
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+    setenv          TABIX_HOME      ""
+}

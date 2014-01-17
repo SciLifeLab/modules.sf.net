@@ -1,6 +1,6 @@
 #%Module1.0
 #
-# fastqscreen 
+# fastqscreen modulefile
 #
 set version [file tail [module-info name]]
 set name [file dirname [module-info name]]
@@ -12,7 +12,14 @@ if [module-info mode display] {
 	puts stderr "\t$name-$version\n"
 }
 
-prepend-path    PATH            $modroot
-prepend-path    PERL5LIB        $perllib
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+    prepend-path    PERL5LIB        $perllib
+}
+
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+    remove-path     PERL5LIB        $perllib
+}
 
 module-whatis   "fastqscreen"

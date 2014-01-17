@@ -26,10 +26,12 @@ conflict bowtie2
 #Log loading to syslog
 logToSyslog
 
-# Directories for the program:
-#
-prepend-path    PATH            $modroot
+if [module-info mode load] {
+    prepend-path        PATH            $modroot
+    setenv              BOWTIE2_HOME    $modroot
+}
 
-# Environments for the program:
-#
-setenv               BOWTIE2_HOME      $modroot
+if [module-info mode remove] {
+    remove-path         PATH            $modroot
+    setenv              BOWTIE2_HOME    ""
+}

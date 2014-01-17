@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## fastqc modulefile
+## htseq modulefile
 ##
 
 source /sw/mf/common/includes/functions.tcl
