@@ -1,0 +1,43 @@
+#%Module1.0#####################################################################
+##
+## bgzip modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/tabix/tabix-0.2.6
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tbgzip - use bgzip $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads bgzip environment."
+
+# Only one version at a time
+conflict bgzip
+
+#Log loading to syslog
+logToSyslog
+
+# Directories for the program:
+#
+if [module-info mode load] {
+    prepend-path        PATH            $modroot
+    setenv              BGZIP_HOME      $modroot
+}
+
+if [module-info mode remove] {
+    remove-path         PATH            $modroot
+    setenv              BGZIP_HOME      ""
+}
+
+
+# Environments for the program:
+#
