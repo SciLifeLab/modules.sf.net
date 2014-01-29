@@ -1,0 +1,34 @@
+#%Module1.0#####################################################################
+##
+## vcftools modulefile
+##
+
+source /sw/mf/common/includes/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot         /proj/a2010002/nobackup/sw/mf/bioinfo-tools/vcftools/$version/bin
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tvcftools - use vcftools $version"
+}
+
+module-whatis   "Loads vcftools environment."
+
+# Only one version at a time
+conflict vcftools
+
+#Log loading to syslog
+logToSyslog
+
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+}
+
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+}
