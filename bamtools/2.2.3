@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## bowtie2 modulefile
+## bamtools modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -26,11 +26,14 @@ conflict bamtools
 #Log loading to syslog
 logToSyslog
 
-# Directories for the program:
-#
-prepend-path    PATH            $modroot/bin
-prepend-path    LD_LIBRARY_PATH $modroot/lib
+if [module-info mode load] {
+    prepend-path    PATH            $modroot/bin
+    prepend-path    LD_LIBRARY_PATH $modroot/lib
+    setenv          BAMTOOLS_HOME   $modroot
+}
 
-# Environments for the program:
-#
-setenv               BAMTOOLS_HOME      $modroot
+if [module-info mode remove] {
+    remove-path     PATH            $modroot/bin
+    remove-path    LD_LIBRARY_PATH  $modroot/lib
+    setenv          BAMTOOLS_HOME   ""
+}

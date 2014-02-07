@@ -1,37 +1,34 @@
 #%Module1.0#####################################################################
 ##
-## tabix modulefile
+## vcflib modulefile
 ##
 
-source $env(MODULE_INCLUDE)/functions.tcl
+source /sw/mf/common/includes/functions.tcl
 getCluster
 
 set components [ file split [ module-info name ] ]
-set version [ lindex $components 1 ]
+#set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/tabix/tabix-$version
+set     modroot         /proj/a2010002/nobackup/sw/mf/bioinfo-tools/vcflib/bin
 
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\ttabix - use tabix $version"
-        puts stderr "\n\tVersion $version\n"
+        puts stderr "\tvcflib - use vcflib $version"
 }
 
-module-whatis   "Loads tabix environment."
+module-whatis   "Loads vcflib environment."
 
 # Only one version at a time
-conflict tabix
+conflict vcflib
 
 #Log loading to syslog
 logToSyslog
 
 if [module-info mode load] {
     prepend-path    PATH            $modroot
-    setenv          TABIX_HOME      $modroot
 }
 
 if [module-info mode remove] {
     remove-path     PATH            $modroot
-    setenv          TABIX_HOME      ""
 }

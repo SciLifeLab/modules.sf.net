@@ -33,14 +33,15 @@ logToSyslog
 if [module-info mode load] {
     prepend-path    PATH            $modroot
     puts stderr "You can find all the GATK files in $modroot"
+    setenv          GATK_HOME       $modroot
 }
 
 if [module-info mode remove] {
     remove-path     PATH            $modroot
+    setenv          GATK_HOME       ""
 }
 
 # Environments for the program:
 #
 
-setenv               GATK_HOME      $modroot
 

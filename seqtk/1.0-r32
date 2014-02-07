@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## bowtie2 modulefile
+## seqtk modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -9,29 +9,29 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/pipelines/bowtie2/$version
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/seqtk/$version
 
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\tbowtie2 - use bowtie2 $version"
+        puts stderr "\tseqtk - use bowtie2 $version"
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads bowtie2 environment."
+module-whatis   "Loads seqtk environment."
 
 # Only one version at a time
-conflict bowtie2
+conflict seqtk
 
 #Log loading to syslog
 logToSyslog
 
 if [module-info mode load] {
     prepend-path        PATH            $modroot
-    setenv              BOWTIE2_HOME    $modroot
+    setenv              SEQTK_HOME      $modroot
 }
 
 if [module-info mode remove] {
     remove-path         PATH            $modroot
-    setenv              BOWTIE2_HOME    ""
+    setenv              SEQTK_HOME      ""
 }
