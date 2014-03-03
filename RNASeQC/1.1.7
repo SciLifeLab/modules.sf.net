@@ -26,11 +26,14 @@ conflict RNASeQC
 #Log loading to syslog
 logToSyslog
 
-# Directories for the program:
-#
-prepend-path    PATH            $modroot
-#prepend-path    CLASSPATH       $modroot
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+    prepend-path    CLASSPATH       $modroot
+    setenv          RNASEQC_HOME    $modroot
+}
 
-# Environments for the program:
-#
-setenv               RNASEQC_HOME      $modroot
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+    remove-path     CLASSPATH       $modroot
+    setenv          RNASEQC_HOME    ""
+}
