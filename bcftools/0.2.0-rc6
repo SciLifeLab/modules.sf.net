@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## bcftools modulefile
+##
+
+source $env(MODULE_INCLUDE)/functions.tcl
+getCluster
+
+set components [ file split [ module-info name ] ]
+set version [ lindex $components 1 ]
+
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/bcftools/$version
+
+proc ModulesHelp { } {
+        global version modroot
+
+        puts stderr "\tbcftools - use bcftools $version"
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis   "Loads bcftools environment."
+
+# Only one version at a time
+conflict bcftools
+
+#Log loading to syslog
+logToSyslog
+
+if [module-info mode load] {
+    prepend-path    PATH            $modroot
+    prepend-path    CLASSPATH       $modroot
+}
+
+if [module-info mode remove] {
+    remove-path     PATH            $modroot
+}
