@@ -1,6 +1,6 @@
 #%Module1.0#####################################################################
 ##
-## RNASeQC modulefile
+## samtools modulefile
 ##
 
 source $env(MODULE_INCLUDE)/functions.tcl
@@ -9,19 +9,19 @@ getCluster
 set components [ file split [ module-info name ] ]
 set version [ lindex $components 1 ]
 
-set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/RNASeQC/$version
+set     modroot          /proj/a2010002/nobackup/sw/mf/bioinfo-tools/samtools/$version
 
 proc ModulesHelp { } {
         global version modroot
 
-        puts stderr "\tRNASeQC - use RNASeQC $version"
+        puts stderr "\tsamtools - use samtools $version"
         puts stderr "\n\tVersion $version\n"
 }
 
-module-whatis   "Loads RNASeQC environment."
+module-whatis   "Loads samtools environment."
 
 # Only one version at a time
-conflict RNASeQC
+conflict samtools
 
 #Log loading to syslog
 logToSyslog
@@ -29,11 +29,8 @@ logToSyslog
 if [module-info mode load] {
     prepend-path    PATH            $modroot
     prepend-path    CLASSPATH       $modroot
-    setenv          RNASEQC_HOME    $modroot
 }
 
 if [module-info mode remove] {
     remove-path     PATH            $modroot
-    remove-path     CLASSPATH       $modroot
-    setenv          RNASEQC_HOME    ""
 }
