@@ -1,0 +1,4 @@
+#%Module1.0
+set DEFAULT 0.1.19
+
+module-version samtools samtools/$DEFAULT
